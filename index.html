@@ -27,6 +27,24 @@
       .bounce {
         animation: bounce 0.3s ease-in-out;
       }
+
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          transform: scale(2);
+        }
+      }
+
+      .click-dot {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: rgb(158, 158, 158);
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 1;
+        animation: fadeOut 1s forwards;
+      }
     </style>
   </head>
   <body class="flex justify-center items-center bg-gray-100">
