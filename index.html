@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="assets/ComputerIcon.png" />
-    <title>Click the Cookie!🍪</title>
+    <title>Test your CPS!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,10 +17,10 @@
       @keyframes bounce {
         0%,
         100% {
-          transform: scale(1);
+          transform: scale(1.01);
         }
         50% {
-          transform: scale(1.05);
+          transform: scale(1);
         }
       }
 
@@ -29,15 +29,17 @@
       }
     </style>
   </head>
-  <body class="flex justify-center items-center">
+  <body class="flex justify-center items-center bg-gray-100">
     <div
-      class="bg-gray-400 w-[75vw] h-[90vh] rounded flex flex-col items-center justify-center"
+      class="bg-gray-400 w-[75vw] h-[90vh] rounded flex flex-col items-center justify-center shadow-lg"
     >
       <div class="flex justify-around w-full">
         <p id="timer" class="font-bold text-4xl mb-5 select-none">
           Time Left: 0
         </p>
-        <p id="cps" class="font-bold text-4xl mb-5 select-none">CPS: 0</p>
+        <p id="cps" class="font-bold text-4xl mb-5 select-none">
+          Average CPS: 0
+        </p>
       </div>
       <div class="flex w-[90%] h-[85%] bg-white">
         <div class="bg-gray-700 w-[20vw] h-[100%]">
@@ -80,7 +82,7 @@
           </p>
           <div
             id="clickingArea"
-            class="w-[40vw] h-[50vh] bg-zinc-700 rounded shadow-lg shadow-black hover:cursor-pointer hover:scale-[1.02] duration-300"
+            class="w-[40vw] h-[50vh] bg-zinc-700 rounded shadow-lg shadow-black hover:cursor-pointer duration-300"
           ></div>
         </div>
       </div>

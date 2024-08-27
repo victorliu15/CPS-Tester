@@ -1,21 +1,51 @@
 let clicks = 0;
 let startTime = null;
 let timer = 0;
+let countdownInterval = null;
+let cpsInterval = null;
+let finalCPS = 0;
+let clickNums = [];
+
+function averageCPS(nums) {
+  let total = 0;
+  for (let i = 0; i < nums.length; i++) {
+    total += parseInt(nums[i]);
+  }
+  return total / nums.length;
+}
+
 function updateCPS() {
   if (startTime) {
     let currentTime = new Date().getTime();
     let elapsedTime = (currentTime - startTime) / 1000;
     let cps = (clicks / elapsedTime).toFixed(2);
-
-    document.getElementById("cps").innerHTML = "CPS: " + cps;
+    clickNums.push(cps);
+    document.getElementById("cps").innerHTML =
+      "Average CPS: " + averageCPS(clickNums).toFixed(2);
   }
 }
 
-setInterval(updateCPS, 100);
+function startCountdown() {
+  countdownInterval = setInterval(function () {
+    if (timer > 0) {
+      timer--;
+      document.getElementById("timer").innerHTML = "Time Left: " + timer;
+    } else {
+      clearInterval(countdownInterval);
+      clearInterval(cpsInterval);
+      let finalTime = (new Date().getTime() - startTime) / 1000;
+      finalCPS = (clicks / finalTime).toFixed(2);
+      document.getElementById("cps").innerHTML = "Final CPS: " + finalCPS;
+      document.getElementById("timer").innerHTML = "Time Left: 0";
+    }
+  }, 1000);
+}
 
 document.getElementById("clickingArea").addEventListener("click", function () {
   if (!startTime) {
     startTime = new Date().getTime();
+    cpsInterval = setInterval(updateCPS, 100);
+    startCountdown();
   }
   clicks += 1;
   let clickingArea = document.getElementById("clickingArea");
