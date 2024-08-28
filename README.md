@@ -1,0 +1,2 @@
+**CPS Tester**
+Ever wanted to know what your Clicks Per Second (CPS) is? This website offers you the ability to test it out with varying time limits. By selecting one of the times on the left side and clicking the gray pad, the timer will start counting down while constantly updating your average CPS. After the timer runs out, it will display your final CPS for you to look at!

@@ -22,6 +22,7 @@ function updateCPS() {
     clickNums.push(cps);
     document.getElementById("cps").innerHTML =
       "Average CPS: " + averageCPS(clickNums).toFixed(2);
+    finalCPS = averageCPS(clickNums);
   }
 }
 
@@ -43,13 +44,21 @@ function startCountdown() {
     } else {
       clearInterval(countdownInterval);
       clearInterval(cpsInterval);
-      let finalTime = (new Date().getTime() - startTime) / 1000;
-      finalCPS = (clicks / finalTime).toFixed(2);
+      document.getElementById("congratulations").innerHTML =
+        "You got " + finalCPS + " CPS !";
+
+      document.getElementById("popup").classList.remove("invisible");
+      document.getElementById("popup").classList.add("visible");
+
       document.getElementById("cps").innerHTML = "Final CPS: " + finalCPS;
       document.getElementById("timer").innerHTML = "Time Left: 0";
     }
   }, 1000);
 }
+
+document.getElementById("closePopup").addEventListener("click", function () {
+  document.getElementById("popup").classList.add("invisible");
+});
 
 document
   .getElementById("clickingArea")
@@ -63,28 +72,12 @@ document
       startCountdown();
     }
     clicks += 1;
-    placeDot(event, this);
     let clickingArea = document.getElementById("clickingArea");
     clickingArea.classList.add("bounce");
     setTimeout(() => {
       clickingArea.classList.remove("bounce");
     }, 300);
   });
-
-function placeDot(event, element) {
-  const dot = document.createElement("div");
-  dot.style.position = "absolute";
-  dot.classList.add("click-dot");
-
-  dot.style.left = `${event.clientX}px`;
-  dot.style.top = `${event.clientY}px`;
-
-  element.appendChild(dot);
-
-  setTimeout(() => {
-    dot.remove();
-  }, 1000);
-}
 
 function clearSelect(selected) {
   let nums = [
